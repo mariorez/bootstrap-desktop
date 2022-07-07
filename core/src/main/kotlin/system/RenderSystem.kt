@@ -29,7 +29,6 @@ class RenderSystem(
 
     override fun onTickEntity(entity: Entity) {
         renderMap[entity].apply {
-            rendered = true
             sprite.apply {
                 transformMap[entity].also {
                     rotation = it.rotation
