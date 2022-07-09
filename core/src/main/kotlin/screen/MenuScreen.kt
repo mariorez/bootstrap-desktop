@@ -1,12 +1,9 @@
 package screen
 
-import Action
 import BaseScreen
 import GameBoot
 import GameBoot.Companion.assets
-import GameBoot.Companion.sizes
 import com.badlogic.gdx.Gdx
-import com.badlogic.gdx.Input
 import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.scenes.scene2d.ui.Image
 import com.badlogic.gdx.scenes.scene2d.ui.Table
@@ -36,12 +33,5 @@ class MenuScreen(
     override fun render(delta: Float) {
         hudStage.draw()
 
-        if (Gdx.input.isKeyPressed(Input.Keys.F))
-            Gdx.graphics.setFullscreenMode(Gdx.graphics.displayMode)
-
-        if (Gdx.input.isKeyPressed(Input.Keys.ESCAPE))
-            Gdx.graphics.setWindowedMode(sizes.windowWidth, sizes.windowHeight)
     }
-
-    override fun doAction(action: Action) {}
 }
