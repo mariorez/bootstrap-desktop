@@ -1,12 +1,13 @@
 package system
 
-import com.badlogic.gdx.math.MathUtils
 import com.github.quillraven.fleks.AllOf
 import com.github.quillraven.fleks.ComponentMapper
 import com.github.quillraven.fleks.Entity
 import com.github.quillraven.fleks.IteratingSystem
 import component.PlayerComponent
 import component.TransformComponent
+import ktx.math.plus
+import ktx.math.times
 
 @AllOf([PlayerComponent::class])
 class MovementSystem(
@@ -16,10 +17,7 @@ class MovementSystem(
     override fun onTickEntity(entity: Entity) {
         transformMap[entity].apply {
             // apply acceleration
-            velocity.add(
-                accelerator.x * deltaTime,
-                accelerator.y * deltaTime
-            )
+            velocity += accelerator * deltaTime
 
             var speed = velocity.len()
 
@@ -29,14 +27,14 @@ class MovementSystem(
             }
 
             // keep speed within set bounds
-            speed = MathUtils.clamp(speed, 0f, maxSpeed)
+            speed = speed.coerceIn(0f, maxSpeed)
 
             // update velocity
             setSpeed(speed)
 
             // move by
             if (velocity.x != 0f || velocity.y != 0f) {
-                position.add(velocity.x * deltaTime, velocity.y * deltaTime)
+                position += velocity * deltaTime
             }
 
             // reset acceleration
