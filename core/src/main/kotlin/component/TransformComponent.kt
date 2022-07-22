@@ -9,7 +9,8 @@ data class TransformComponent(
     var acceleration: Float = 0f,
     var deceleration: Float = 0f,
     var maxSpeed: Float = 1000f,
-    var rotation: Float = 0f
+    var rotation: Float = 0f,
+    var zIndex: Float = 0f
 ) {
     fun setSpeed(speed: Float) {
         // if length is zero, then assume motion angle is zero degrees
