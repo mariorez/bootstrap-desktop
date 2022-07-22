@@ -18,7 +18,7 @@ class RenderSystem(
     private val transformMap: ComponentMapper<TransformComponent>,
     private val renderMap: ComponentMapper<RenderComponent>,
 ) : IteratingSystem(
-    compareEntity { entA, entB -> transformMap[entA].zIndex.compareTo(transformMap[entB].zIndex) }
+    compareEntity { entA, entB -> renderMap[entA].zIndex.compareTo(renderMap[entB].zIndex) }
 ) {
 
     override fun onTick() {

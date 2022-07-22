@@ -14,6 +14,13 @@ class MovementSystem(
     private val transformMap: ComponentMapper<TransformComponent>
 ) : IteratingSystem() {
 
+    /**
+     * Adjust velocity vector based on accelerator vector,
+     * then adjust position based on velocity vector.
+     * If not accelerating, deceleration value is applied.
+     * Speed is limited by maxSpeed value.
+     * Accelerator vector reset to (0,0) at end of method.
+     */
     override fun onTickEntity(entity: Entity) {
         transformMap[entity].apply {
             // apply acceleration
@@ -32,7 +39,7 @@ class MovementSystem(
             // update velocity
             setSpeed(speed)
 
-            // move by
+            // update position according to value stored in movement vector
             if (velocity.x != 0f || velocity.y != 0f) {
                 position += velocity * deltaTime
             }
